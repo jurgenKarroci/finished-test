@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+    </head>
+    <body>
+        <article>
+            <h1>Computer Graphics</h1>
+            <p>
+                Computer graphics are graphics created using computers and the representation of image data
+                by a computer specifically with help from specialized graphic hardware and software.
+
+                The interaction and understanding of computers and interpretation of data has been made
+                easier because of computer graphics. Computer graphic development has had a significant
+                impact on many types of media and have revolutionized animation, movies and the video
+                game industry.
+            </p>
+
+            <h1>Overview</h1>
+            <p>
+                The term computer graphics has been used in a broad sense to describe "almost everything on
+                computers that is not text or sound".[1] Typically, the term computer graphics refers to
+                several different things:
+            </p>
+
+            <ul>
+                <li>the representation and manipulation of image data by a computer</li>
+                <li>the various technologies used to create and manipulate images</li>
+                <li>
+                    the sub-field of computer science which studies methods for digitally synthesizing and
+                    manipulating visual content, see study of computer graphics
+                </li>
+            </ul>
+
+            <p>
+                Computer graphics is widespread today. Computer imagery is found on television, in newspapers,
+                for example in weather reports, or for example in all kinds of medical investigation and surgical
+                procedures. A well-constructed <a href="http://en.wikipedia.org/wiki/Chart">graph</a> can present
+                complex statistics in a form that is easier to understand and interpret. In the media "such graphs
+                are used to illustrate papers, reports, thesis", and other presentation material.[2]
+
+                Many powerful tools have been developed to visualize data. Computer generated imagery can be
+                categorized into several different types: two dimensional (2D), three dimensional (3D), and animated
+                graphics. As technology has improved, 3D computer graphics have become more common, but 2D computer
+                graphics are still widely used. Computer graphics has emerged as a sub-field of computer science
+                which studies methods for digitally synthesizing and manipulating visual content. Over the past
+                decade, other specialized fields have been developed like information visualization, and scientific
+                visualization more concerned with "the visualization of three dimensional phenomena (architectural,
+                meteorological, medical, biological, etc.), where the emphasis is on realistic renderings of volumes,
+                surfaces, illumination sources, and so forth, perhaps with a dynamic (time) component".[3]
+            </p>
+        </article>
+
+        <section id="result"></section>
+
+<script>
+ // My Code
+ // Str gets all the strings in the article and removes all non letters in text
+  var str = document.getElementsByTagName('article')[0].innerHTML.replace(/<.*?>/g, '').replace(/"/gi,'').replace(/'/g, '')
+.replace( /\[\d\]/gi, '').replace(/[\s*\.*\,\;\+?\#\|:\/\\\[\]\(\)\{\}$%&0-9*]/g, ' ');
+ // Turns first letters to lowercase 
+  var string = str.toLowerCase();
+  var splitted = string.split(" ");
+  var words = []; 
+ // Count repeated words
+for(var i=0; i<splitted.length; i++) {
+  if(typeof words[splitted[i]] != 'undefined'){words[splitted[i]]+=1;}
+  else{ words[splitted[i]] = 1; }
+}
+ // Sort words by frequency 
+  var sortable = [];
+for (var i in words)  if((words[i] >= 1)&&(i != '')) sortable.push([i , words[i]]) 
+  sortable.sort(function(a, b) {return b[1] - a[1]}) 
+ // Temporary sets in the result div sorted words frequencies, and replaces ',' with space
+  document.getElementById('result').innerHTML = sortable;
+  var str2 = document.getElementById('result').innerHTML.replace(/,/g, ' ');
+  document.getElementById('result').innerHTML = str2;
+  var splitted1 = str2.split(" ")     
+  text = "<ol>"; var j=0;
+ // Sets words in new line, so we can se them as a row 	 
+for (i = 0; i < (splitted1.length)/2; i++) { 
+  text += "<li>" + document.getElementById('result').innerHTML.split(" ",2+j).splice(j) +')' +"</li>";
+  j=j+2;
+}
+ // displays the final result in div result
+  document.getElementById('result').innerHTML = text.replace(/,/g, ' (');
+	  
+</script>
+
+    </body>
+</html>
